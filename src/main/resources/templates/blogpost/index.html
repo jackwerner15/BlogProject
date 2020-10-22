@@ -7,35 +7,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Site</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Welcome to Our Blog Post Site!</h1>
-        <h3>Check out our blogs!</h3>
-        <p>Please use the form below to submit a Blog Post:</p>
-        <form action="#" th:action="@{/}" th:object="${blogPost}" method="post">
-            <table>
-                <tr>
-                    <td>Title</td>
-                    <td><input type="text" th:field="*{title}" /></td>
-                </tr>
-                <tr>
-                    <td>Author:</td>
-                    <td><input type="text" th:field="*{author}" /></td>
-                </tr>
-                <tr>
-                    <td>Blog Entry:</td>
-                    <td><input type="text" th:field="*{blogEntry}" /></td>
-                </tr>
-                <tr>
-                    <td><button type="submit">Submit Your Post</button></td>
-                </tr>
-            </table>
-        </form>
+
+        <div class="w-auto p-3" style="background-color: rgb(16, 175, 238)">
+            <div class="p-3 mb-2 bg-primary text-white">
+                <h1>Welcome to Our Blog Post Site!</h1>
+            </div>
+        </div>
+        <div class="p-3 mb-2 bg-dark text-white">
+            <h3>Check out our blogs!</h3>
+        </div>
+
+
+        
+
+
+
+            <div class="row">
+                <div th:each="blog:${posts}">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <p th:text="${blog.title}" />
+                            </div>
+                            <div class="panel-body">
+                                <p th:text="${blog.author}" />
+                                <p th:text="${blog.blogEntry}" />
+                            </div>
+                            <div class="panel-footer">
+                                <!-- Link to Update -->
+                                <!-- Link to Show  -->
+                                <!--  Link to Destroy -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <a th:href="@{/blogpost/new}">
+                <button class="btn btn-primary">Submit a New Blog Post</button>
+            </a>
+        </div>
     </div>
-
-
+    <img src="https://websterapartments.org/wp-content/uploads/2015/03/MarchMadness-main.jpg" alt="Italian Trulli">
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -45,5 +64,6 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
 </body>
+
 
 </html>
