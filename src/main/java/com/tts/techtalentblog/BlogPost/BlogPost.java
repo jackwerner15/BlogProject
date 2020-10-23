@@ -5,54 +5,57 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 public class BlogPost {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id; 
-    private String title;
-    private String author;
-    private String blogEntry;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    public BlogPost(){}
+	private String title;
+	private String author;
+	private String blogEntry;
 
-    public BlogPost(String title, String author, String blogEntry) {
-        this.title = title;
-        this.author = author;
-        this.blogEntry = blogEntry;
-    }
+	public BlogPost() {
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public BlogPost(String title, String author, String blogEntry) {
+		this.title = title;
+		this.author = author;
+		this.blogEntry = blogEntry;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getAuthor() {
-        return author;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public String getBlogEntry() {
-        return blogEntry;
-    }
+	public String getAuthor() {
+		return author;
+	}
 
-    public void setBlogEntry(String blogEntry) {
-        this.blogEntry = blogEntry;
-    }
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
-    @Override
-    public String toString() {
-        return "BlogPost [author=" + author + ", blogEntry=" + blogEntry + ", id=" + id + ", title=" + title + "]";
-    }
+	public String getBlogEntry() {
+		return blogEntry;
+	}
 
-    
+	public void setBlogEntry(String blogEntry) {
+		this.blogEntry = blogEntry;
+	}
+
+	@Override
+	public String toString() {
+		return "BlogPost [author=" + author + ", blogEntry=" + blogEntry + ", id=" + id + ", title=" + title + "]";
+	}
+
 }
