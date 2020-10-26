@@ -53,11 +53,33 @@ public class BlogPostController {
 		return "blogpost/result";
 	}
 
+
+	@PostMapping(value= "/blogpost/update/{id}")
+	public String updateExistingPost(@PathVariable Long id, BlogPost blogPost, Model model){
+		Optional<BlogPost> post = blogPostRepository.findById(id);
+		if (post.isPresent()) {
+            BlogPost actualPost = post.get();
+            actualPost.setTitle(blogPost.getTitle());
+            actualPost.setAuthor(blogPost.getAuthor());
+            actualPost.setBlogEntry(blogPost.getBlogEntry());
+            blogPostRepository.save(actualPost);
+            model.addAttribute("blogPost", actualPost);
+        } else{
+
+		}
+ 
+        return "blogpost/result";
+	}
+
+
+
+
 	@RequestMapping(value = "/blogpost/delete/{id}")
 	public String deletePostWithId(@PathVariable Long id, BlogPost blogPost, Model model) {
+		// takes id from the url path, passes it into deleteId from the crud repositroy
 		blogPostRepository.deleteById(id);
 
-		return "redirect:/";
+		return "blogpost/delete";
 	}
 
 	// This is the mapping to edit a specific post
@@ -83,7 +105,7 @@ public class BlogPostController {
 		}
 
 		// Show browser the blogpost/new page
-		return "blogpost/new";
+		return "blogpost/edit";
 	}
 
 }
